@@ -1,6 +1,4 @@
 <template>
-  <van-button type="primary">test</van-button>
-  <van-button type="success">test</van-button>
   <Web3Api />
 </template>
 <script setup>

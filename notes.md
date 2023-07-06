@@ -56,3 +56,8 @@ web3 的高频 API ：
 
 1.创建账号：
 web3.eth.accounts.create([entropy])
+
+
+使用ethereumjs-tx@1.3.7
+需要一个垫片  vue.config.js
+const NodePolyfillWebpackPlugin = require("node-polyfill-webpack-plugin");
