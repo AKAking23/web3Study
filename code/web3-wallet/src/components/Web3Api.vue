@@ -86,10 +86,19 @@ const transaction = async () => {
   const serializedTx = "0x" + tx.serialize().toString("hex");
   // 3.开始转账
   const trans = web3.eth.sendSignedTransaction(serializedTx);
+  //
   trans.on("transactionHash", (txid) => {
     console.log(txid, "交易ID");
     console.log(`https://goerli.etherscan.io/tx/${txid}`);
   });
+  //只要有一个节点确认就不再触发了
+  trans.on("receipt", () => {
+    console.log("第一个节点确认");
+  });
+  //只要有其他的节点确认就会打印
+  trans.on('confirmation',()=>{
+    console.log("第n个节点确认");
+  })
 };
 </script>
 <style scoped></style>

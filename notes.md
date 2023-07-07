@@ -57,7 +57,24 @@ web3 的高频 API ：
 1.创建账号：
 web3.eth.accounts.create([entropy])
 
-
 使用ethereumjs-tx@1.3.7
-需要一个垫片  vue.config.js
+需要一个垫片 vue.config.js
 const NodePolyfillWebpackPlugin = require("node-polyfill-webpack-plugin");
+
+- [bip39](https://github.com/bitcoinjs/bip39)：随机产生新的 mnemonic code，并可以将其转成 binary 的 seed。
+- [ethereumjs-wallet](https://github.com/ethereumjs/ethereumjs-wallet)：生成和管理公私钥，下面使用其中 hdkey 子套件来创建 HD 钱包。
+- [ethereumjs-util](https://github.com/ethereumjs/ethereumjs-util)：Ethereum 的一个工具库。
+
+
+在BIP32路径中定义以下5个级别：
+m/purpse'/coin_type'/account'/change/address_index
+
+- purpose：在BIP43之后建议将常数设置为44'。表示根据BIP44规范使用该节点的子树。
+- Coin_type：币种，代表一个主节点（种子）可用于无限数量的独立加密币，如比特币，Litecoin或Namecoin。此级别为每个加密币创建一个单独的子树，避免重用已经在其它链上存在的地址。开发人员可以为他们的项目注册未使用的号码。
+- Account：账户，此级别为了设置独立的用户身份可以将所有币种放在一个的帐户中，从0开始按顺序递增。
+- Change：常量0用于外部链，常量1用于内部链，外部链用于钱包在外部用于接收和付款。内部链用于在钱包外部不可见的地址，如返回交易变更。
+- Address_index：地址索引，按顺序递增的方式从索引0开始编号。
+
+BIP44的规则使得 HD钱包非常强大，用户只需要保存一个种子，就能控制所有币种，所有账户的钱包，因此由BIP39 生成的助记词非常重要，所以一定安全妥善保管，那么会不会被破解呢？如果一个 HD 钱包助记词是 12 个单词，一共有 2048 个单词可能性，那么随机的生成的助记词所有可能性大概是`5e+39`，因此几乎不可能被破解。
+
+keyStore就是JSON字符串
