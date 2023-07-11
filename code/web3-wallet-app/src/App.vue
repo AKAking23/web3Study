@@ -1,30 +1,33 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <router-view></router-view>
+
 </template>
-
+<script setup>
+import { ref } from "vue";
+import Button from "./components/Button.vue";
+</script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body {
+  // padding: 10px;
+  padding: 0;
+  margin: 0;
 }
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+.wrap{
+  width: 100vw;
+  height: 100vh;
+  background-image: url('https://uccn.zhichubao.com/image/demo/beijingtu.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  .login{
+    width: 400px;
+    height: 600px;
+    box-shadow: 0px 2px 10px #ff0;
+    position: fixed;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
   }
 }
 </style>
