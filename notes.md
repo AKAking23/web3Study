@@ -78,3 +78,37 @@ m/purpse'/coin_type'/account'/change/address_index
 BIP44的规则使得 HD钱包非常强大，用户只需要保存一个种子，就能控制所有币种，所有账户的钱包，因此由BIP39 生成的助记词非常重要，所以一定安全妥善保管，那么会不会被破解呢？如果一个 HD 钱包助记词是 12 个单词，一共有 2048 个单词可能性，那么随机的生成的助记词所有可能性大概是`5e+39`，因此几乎不可能被破解。
 
 keyStore就是JSON字符串
+
+
+async function async1() {
+  console.log("acync1 start");
+  await async2();
+  console.log("async1 end");
+}
+async function async2() {
+  console.log("acync2");
+}
+console.log("start");
+setTimeout(() => {
+  console.log("settimeout");
+}, 0);
+async1();
+console.log("processing");
+new Promise((resolve, reject) => {
+  for (let i = 0; i <= 2; i++) {
+    console.log(i);
+    resolve();
+  }
+})
+  .then(function () {
+    console.log("promise1");
+  })
+  .then(function () {
+    console.log("promise2");
+  });
+console.log("end");
+const seedForm = ref({
+  toAddress: "",
+  price: "",
+  pwd: "",
+});

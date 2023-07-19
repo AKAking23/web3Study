@@ -93,7 +93,7 @@ const confirmMn = async () => {
   const walletObj = {
     id: addressIndex,
     mnemonic: mnemonic.value,
-    balance: 0,
+    balance: 0,  
     address: lowerCaseAddress,
     privateKey,
     keystore,
